@@ -22,12 +22,3 @@ pix = max((size((A))))
 
 [c, r] = imfindcircles(A, [100 600], 'ObjectPolarity', 'dark', 'Sensitivity', 0.965)
 viscircles(c, r)
-
-
-
-
-
-
-
-
-
