@@ -1,7 +1,7 @@
 % Final Poject Section 12 Group 4 Eli, Chris, Ryan
-clc
-close all
-clear all %#ok<*CLALL>
+clc;
+close all;
+clear all; %#ok<*CLALL>
 
 ratios = [0.9083, 0.6500, 0.7156, 0.8953, 0.7259, 0.7993, 1/0.9083, 1/0.6500, 1/0.7156, 1/0.8953, 1/0.7259, 1/0.7993];
 coins = ["Penny", "Quarter", "Quarter", "Quarter", "Nickle", "Nickle", "dime", "dime", "Penny", "Nickle", "Dime", "Penny"];
@@ -16,6 +16,9 @@ pn = 0.7993;
 A = imread('mycoins.jpg');
 A = rgb2gray(A);
 A = A - 80;
+% A = wiener2(A,[5 5]);
+% A = wiener2(A,[5 5]);
+% A = histeq(A);
 %[circles, sizes] = zeros(1, 1), zeros(1,1);
 %size([circles])
 
@@ -45,10 +48,6 @@ if max(size(r)) > 1
        end
     end
 end
-
-
-
-
 
 
 
