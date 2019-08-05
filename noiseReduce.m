@@ -23,8 +23,8 @@ function [adjImage] = noiseReduce(image)
 % clc; clear all; close all;
 
 %Remove Noise Using an Averaging Filter and a Median Filter
-I = imread(image);
-bw = rgb2gray(I);
+% I = imread(image);
+bw = rgb2gray(image);
 figure(1);
 imshow(bw);
 Kaverage = filter2(fspecial('average',3), bw) / 255;
