@@ -33,25 +33,25 @@ L = wiener2(K,[5 5]);
 % clc; clear all; close all;
 
 
-%contrast enhancing
+% Contrast enhancing
 I2 = histeq(L);
 figure(5);
 imshow(I2);
-title('THis SHITE');
+title('Histogram Equalization');
 
-%Light level calibration
-I=double(I);
-a=min(min(I));
-b=max(max(I));
-t=150;
-[m1,m2]=size(I);
-I2=zeros(m1,m2);
-for i=1:m1
- for j=1:m2
-  I2(i,j)=(t/(b-a))*(I(i,j)-a);
- end
+% Light level calibration
+I = double(I);
+a = min(min(I));
+b = max(max(I));
+t = 150;
+[m1,m2] = size(I);
+I2 = zeros(m1,m2);
+for i = 1:m1
+    for j = 1:m2
+        I2(i,j) = (t/(b-a))*(I(i,j)-a);
+    end
 end
-I2=uint8(I2);
+I2 = uint8(I2);
 figure(6);
 imshow(I2);
-title("This also SHITE");
+title("Brightness Adjusted");
