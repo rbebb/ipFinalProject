@@ -4,7 +4,7 @@ close all
 clear all %#ok<*CLALL>
 
 %function counts = idcoins(name)
-name = 'c2.jpg'; %remove later
+name = 'c4.jpg'; %remove later
 
 smol = 0.2;
 
@@ -60,13 +60,22 @@ imshow(A);
 r = r*1.1;
 viscircles(c, r)
 
-if max(size(c)) == 1
+if max(size(r)) == 1
    imwrite(A, 'test.pgm');
    p = match('penny.pgm', 'test.pgm');
    n = match('nickel.pgm','test.pgm');
    d = match('dime.pgm', 'test.pgm');
-   q = match('quarter.pgm', 'teast.pgm');
-   
+   q = match('quarter.pgm', 'test.pgm');
+   v = p;
+   if v > n
+       v = n;
+   end
+   if v > d
+       v = d;
+   end
+   if v > q
+       v = q;
+   end
    
    %return v
 end
@@ -115,7 +124,7 @@ end
 counts = zeros(4, 1);
 for j=1:p
     %nearness(:,j,2)
-    g = median(nearness(:,j,2));
+    g = mode(nearness(:,j,2));
     if g == 1
         counts(3) = counts(3) + 1;
     end
