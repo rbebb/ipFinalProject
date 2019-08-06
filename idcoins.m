@@ -4,14 +4,14 @@ close all
 clear all %#ok<*CLALL>
 
 %function counts = idcoins(name)
-name = 'c1.jpg'; %remove later
+name = 'c2.jpg'; %remove later
 
 smol = 0.2;
 
 %ratios = [0.9083, 0.6500, 0.7156, 0.8953, 0.7259, 0.7993, 1/0.9083, 1/0.6500, 1/0.7156, 1/0.8953, 1/0.7259, 1/0.7993, 1];
 %coins = ["Penny", "Quarter", "Quarter", "Quarter", "Nickle", "Nickle", "dime", "dime", "Penny", "Nickle", "Dime", "Penny", "SELF"];
-ratios = [1.3004 1.1367 1.3695 0.769 0.8741 1.0531 0.8797 1.144 1.2048 0.7302 0.9496 0.83 1];
-coins = ["Penny" "Nickel" "Dime" "Quarter" "Nickel" "Dime" "Quarter" "Penny" "Dime" "Quarter" "Penny" "Nickel" "ME"];
+ratios = [1.4063 1.0968 1.2741 0.7211 0.7799 0.9060 0.9251 1.2822 1.1616 0.7849 1.1038 0.8609];
+coins = ["Dime" "Dime" "Dime" "Quarter" "Quarter" "Quarter" "Penny" "Penny" "Penny" "Nickel" "Nickel" "Nickel" ];
 %denominators
 
 dp = 0.9083;
@@ -92,23 +92,45 @@ if max(size(r)) > 1
                     %f = k
                 end
             end
+            if nearness(i, j, 2) == 2 || nearness(i, j, 2) == 3
+                nearness(i, j, 2) = 1;
+            end
             
-            %nearness(i, j, 2) = coins(nearness(i, j, 2));
+            if nearness(i, j, 2) == 5 || nearness(i, j, 2) == 6
+                nearness(i, j, 2) = 4;
+            end
+            
+            if nearness(i, j, 2) == 8 || nearness(i, j, 2) == 9
+                nearness(i, j, 2) = 7;
+            end
+            
+            if nearness(i, j, 2) == 11 || nearness(i, j, 2) == 12
+                nearness(i, j, 2) = 10;
+            end
         end
     end
     nearness
 end
 
+counts = zeros(4, 1);
+for j=1:p
+    %nearness(:,j,2)
+    g = median(nearness(:,j,2));
+    if g == 1
+        counts(3) = counts(3) + 1;
+    end
+    if g == 7
+        counts(1) = counts(1) + 1;
+    end
+    if g == 10
+        counts(2) = counts(2) + 1;
+    end
+    if g == 4
+        counts(4) = counts(4) + 1;
+    end
+        
+end
 
-% mask = zeros(size(A));
-% mask(1:end,1:end) = 1;
-% X = activecontour(A,mask, 8000, 'edge');
-% %Y = imopen(Y, strel('disk',5));
-% X = imclose(X, strel('disk',10));
-% %Y = imdilate(X, strel('disk',20));
-% Y = imfill(X, 'holes');
-% 
-% f1 = figure();
-% subplot(1, 2, 1), imshow(X);
-% subplot(1, 2, 2), imshow(Y);
+disp(counts)
 
+%return counts?
