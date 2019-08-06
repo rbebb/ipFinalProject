@@ -64,4 +64,16 @@ end
 % Calculate total value of all coins
 t = p*.01 + n*.05 + d*.1 + q*.25;
 
+%             prop = regionprops(A, {'Area', 'Centroid'});
+%             prop = struct2table(prop);
+%             
+%             for i = 1 : numel(prop.Area(:, 1))
+%                 if prop.Area(i) < 4000
+%                     A = insertShape(A, 'circle', [prop.Centroid(i, 1), prop.Centroid(i, 2), 25], 'LineWidth', 5, 'Color', 'green');
+%                 end
+%                 figure;
+%                 pause;
+%                 disp("test")
+%             end
+
 end

@@ -1,10 +1,11 @@
 % Final Poject Section 12 Group 4 Eli, Chris, Ryan
-clc
-close all
-clear all %#ok<*CLALL>
+% clc
+% close all
+% clear all %#ok<*CLALL>
 
-%function counts = idcoins(name)
-name = 'c4.jpg'; %remove later
+% function [counts, t, c, r, A] = idcoins(name)
+function [counts, t, c, r, A] = idcoins(name)
+% name = 'coins.jpg'; %remove later
 
 smol = 0.2;
 
@@ -21,7 +22,8 @@ nq = 0.8953;
 dn = 0.7259;
 pn = 0.7993;
 
-A = imread(name);
+% A = imread(name);
+A = name;
 A = rgb2gray(A);
 A = filter2(fspecial('average',3), A) / 255;
 A = imresize(A, smol);
@@ -44,6 +46,7 @@ A = uint8(I2);
 
 
 % 
+figure(9);
 imshow(A);
 % 
 
@@ -56,16 +59,22 @@ imshow(A);
 
 
 [c, r] = imfindcircles(A, [smol*200 smol*1300], 'ObjectPolarity', 'dark', 'Sensitivity', 0.97) %#ok<NOPTS> %0.98
+
 %[c, r] = imfindcircles(A, [200 1300], 'ObjectPolarity', 'dark', 'Sensitivity', 0.99) %#ok<NOPTS> %0.98
 r = r*1.1;
 viscircles(c, r)
+print(9,'test.png','-dpng','-r300');
+
+% Testing line
+% imwrite(imread('pennyFront.JPG'), 'pennyFront.pgm');
 
 if max(size(r)) == 1
    imwrite(A, 'test.pgm');
-   p = match('penny.pgm', 'test.pgm');
+   p = match('pennyFront.pgm', 'test.pgm');
    n = match('nickel.pgm','test.pgm');
    d = match('dime.pgm', 'test.pgm');
    q = match('quarter.pgm', 'test.pgm');
+   
    v = p;
    if v > n
        v = n;
@@ -121,18 +130,24 @@ if max(size(r)) > 1
     nearness
 end
 
+% Initialize total for each coin
+% p = 0;
+% n = 0;
+% d = 0;
+% q = 0;
+
 counts = zeros(4, 1);
 for j=1:p
     %nearness(:,j,2)
     g = mode(nearness(:,j,2));
     if g == 1
-        counts(3) = counts(3) + 1;
-    end
-    if g == 7
         counts(1) = counts(1) + 1;
     end
-    if g == 10
+    if g == 7
         counts(2) = counts(2) + 1;
+    end
+    if g == 10
+        counts(3) = counts(3) + 1;
     end
     if g == 4
         counts(4) = counts(4) + 1;
@@ -140,6 +155,9 @@ for j=1:p
         
 end
 
-disp(counts)
+% disp(counts)
+
+t = counts(1)*.01 + counts(2)*.05 + counts(3)*.1 + counts(4)*.25;
 
 %return counts?
+end
