@@ -1,7 +1,7 @@
 function [adjImage] = noiseReduce(image)
 
 % %Removing noise with adaptive filtering 
-% coinsImg = imread('coins.jpg');
+coinsImg = imread('coins.jpg');
 % bw = rgb2gray(coinsImg);
 % J = imnoise(bw,'gaussian',0,0.025);
 % figure(1);
@@ -24,16 +24,16 @@ function [adjImage] = noiseReduce(image)
 
 %Remove Noise Using an Averaging Filter and a Median Filter
 % I = imread(image);
-bw = rgb2gray(image);
+bw = rgb2gray(coinsImg);
 figure(1);
 imshow(bw);
-Kaverage = filter2(fspecial('average',3), bw) / 255;
+Kmedian = medfilt2(bw);
 figure(2);
-imshow(Kaverage);
+imshow(Kmedian);
 
 % pause();
 % clc; clear all; close all;
-
+    
 
 % Contrast enhancing
 I2 = histeq(Kaverage);
