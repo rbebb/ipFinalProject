@@ -57,7 +57,7 @@ t = 0;
 counts = zeros(4, 1);
 if max(size(r)) == 1
    imwrite(A, 'test.pgm');
-   p = match('pennyFront.pgm', 'test.pgm');
+   p = match('penny.pgm', 'test.pgm');
    n = match('nickel.pgm','test.pgm');
    d = match('dime.pgm', 'test.pgm');
    q = match('quarter.pgm', 'test.pgm');
