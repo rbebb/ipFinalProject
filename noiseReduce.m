@@ -1,45 +1,13 @@
 function [adjImage] = noiseReduce(image)
 
-% %Removing noise with adaptive filtering 
-% coinsImg = imread('coins.jpg');
-% bw = rgb2gray(coinsImg);
-% J = imnoise(bw,'gaussian',0,0.025);
-% figure(1);
-% imshow(bw);
-% title('Black and White version');
-
-% K = wiener2(bw,[5 5]);
-% figure(2);
-% imshow(K);
-% title('Noise Removal');
-% figure(3);
-% imshow(coinsImg);
-% title('Original Image');
-% L = wiener2(K,[5 5]);
-% figure(4);
-% imshow(L);
-
-% pause();
-% clc; clear all; close all;
-
 % Remove noise using a median filter
 % I = imread(image);
 bw = rgb2gray(image);
-figure(1);
-imshow(bw);
 Kmedian = medfilt2(bw);
-figure(2);
-imshow(Kmedian);
-
-% pause();
-% clc; clear all; close all;
     
 
-% Contrast enhancing
+% Contrast enhancing and histogram equalization
 I2 = histeq(Kmedian);
-figure(5);
-imshow(I2);
-title('Histogram Equalization');
 
 % Light level calibration
 % I = double(I);
