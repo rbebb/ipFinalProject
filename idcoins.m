@@ -1,4 +1,4 @@
-% Final Poject Section 12 Group 4 Eli, Chris, Ryan
+% Final Project Section 12 Group 4 Eli, Chris, Ryan
 function [counts, t, c, r, A] = idcoins(name)
 
 smol = 0.2;
